@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<h1>{% trans 'Customers' %}</h1>
+<table>
+  <thead>
+    <tr>
+      <th>{% trans 'Name' %}</th>
+      <th>{% trans 'Phone' %}</th>
+      <th>{% trans 'Passport' %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for customer in customers %}
+    <tr>
+      <td><a href="{% url 'crm:customer-detail' customer.id %}">{{ customer.full_name }}</a></td>
+      <td>{{ customer.phone_number }}</td>
+      <td>{{ customer.passport_number }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">{% trans 'No customers found.' %}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

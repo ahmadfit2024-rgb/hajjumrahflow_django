@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<h1>{{ customer.full_name }}</h1>
+<ul>
+  <li>{% trans 'Phone' %}: {{ customer.phone_number }}</li>
+  <li>{% trans 'Email' %}: {{ customer.email }}</li>
+  <li>{% trans 'Passport' %}: {{ customer.passport_number }}</li>
+</ul>
+{% endblock %}
