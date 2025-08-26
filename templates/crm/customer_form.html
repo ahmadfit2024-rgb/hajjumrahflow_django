@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+  <h1>{% trans 'Add New Customer' %}</h1>
+
+  <div class="form-container">
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn-primary">{% trans 'Save Customer' %}</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{
+  "name": "New Booking Onboarding (template)",
+  "nodes": [
+    {
+      "name": "Catch New Booking Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "parameters": {
+        "path": "webhook/new-booking"
+      }
+    },
+    {
+      "name": "Get Full Booking Details",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "url": "=<YOUR_DJANGO_API_URL>/api/v1/bookings/{{$json.body.booking_id}}/"
+      }
+    },
+    {
+      "name": "Send Welcome Email",
+      "type": "n8n-nodes-base.gmail",
+      "parameters": {
+        "to": "={{$json.email}}",
+        "subject": "Welcome"
+      }
+    },
+    {
+      "name": "Log Email Action",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "url": "=<YOUR_DJANGO_API_URL>/api/v1/communication-logs/",
+        "method": "POST"
+      }
+    }
+  ],
+  "connections": {}
+}

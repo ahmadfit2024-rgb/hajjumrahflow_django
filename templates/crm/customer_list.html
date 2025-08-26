@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="header-with-action">
+  <h1>{% trans 'Customers' %}</h1>
+  <a href="{% url 'customer-add' %}" class="btn-primary">{% trans 'Add New Customer' %}</a>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>{% trans 'Full Name' %}</th>
+        <th>{% trans 'Phone Number' %}</th>
+        <th>{% trans 'Passport Number' %}</th>
+        <th>{% trans 'Nationality' %}</th>
+        <th>{% trans 'Actions' %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customers %}
+      <tr>
+        <td>{{ customer.full_name }}</td>
+        <td>{{ customer.phone_number }}</td>
+        <td>{{ customer.passport_number }}</td>
+        <td>{{ customer.nationality }}</td>
+        <td>
+          <a href="#" class="action-link">{% trans 'View' %}</a>
+          <a href="#" class="action-link">{% trans 'Edit' %}</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="5" style="text-align: center; padding: 2rem;">{% trans 'No customers found. Click "Add New Customer" to begin.' %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

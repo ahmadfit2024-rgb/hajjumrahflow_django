@@ -1,0 +1,35 @@
+{% load static %}
+{% load i18n %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HajjUmrahFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    {% include 'partials/_navbar.html' %}
+    <div class="layout">
+      {% include 'partials/_sidebar.html' %}
+      <main class="content">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+            <img src="{% static 'images/SVU-logo.png' %}" alt="SVU Logo">
+        </div>
+        <div class="footer-details">
+            <p><strong>Integrated Web-Based System for Hajj and Umrah Trips Management</strong></p>
+            <p>MCS Program - Syrian Virtual University</p>
+            <p><strong>Ahmad Shamdin</strong> (Ahmad_279960)</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
