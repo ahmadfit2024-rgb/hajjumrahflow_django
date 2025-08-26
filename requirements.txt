@@ -10,3 +10,4 @@ whitenoise>=6.6
 django-cors-headers>=4.4
 celery>=5.4
 redis>=5.0
+Faker==26.0.0
