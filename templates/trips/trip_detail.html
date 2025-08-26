@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="header-with-action">
+  <h1>{{ trip.name }}</h1>
+  <a href="{% url 'trip-update' trip.pk %}" class="btn-primary">{% trans 'Edit Trip' %}</a>
+</div>
+
+<div class="details-grid">
+    <div class="detail-card">
+        <h2>{% trans 'Trip Information' %}</h2>
+        <p><strong>{% trans 'Status:' %}</strong> <span class="status-badge status-{{ trip.status }}">{{ trip.get_status_display }}</span></p>
+        <p><strong>{% trans 'Departure:' %}</strong> {{ trip.departure_date|date:"l, d F Y - H:i" }}</p>
+        <p><strong>{% trans 'Return:' %}</strong> {{ trip.return_date|date:"l, d F Y - H:i" }}</p>
+        <p><strong>{% trans 'Price per Person:' %}</strong> ${{ trip.price_per_person|floatformat:2 }}</p>
+        <p><strong>{% trans 'Description:' %}</strong> {{ trip.description|linebreaksbr }}</p>
+    </div>
+    <div class="detail-card">
+        <h2>{% trans 'Seat Management' %}</h2>
+        <p><strong>{% trans 'Total Seats:' %}</strong> {{ trip.total_seats }}</p>
+        <p><strong>{% trans 'Booked Seats:' %}</strong> {{ trip.booked_seats }}</p>
+        <p><strong>{% trans 'Available Seats:' %}</strong> {{ trip.available_seats }}</p>
+        <div class="progress-bar">
+          <div class="progress" style="width: {% widthratio trip.booked_seats trip.total_seats 100 %}%"></div>
+        </div>
+    </div>
+</div>
+
+<div class="header-with-action" style="margin-top: 2rem;">
+  <h2>{% trans 'Passenger Manifest' %}</h2>
+</div>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>{% trans 'Full Name' %}</th>
+        <th>{% trans 'Phone Number' %}</th>
+        <th>{% trans 'Passport Number' %}</th>
+        <th>{% trans 'Booking Status' %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in trip.bookings.all %}
+        {% if booking.status != 'cancelled' %}
+        <tr>
+          <td>{{ booking.customer.full_name }}</td>
+          <td>{{ booking.customer.phone_number }}</td>
+          <td>{{ booking.customer.passport_number }}</td>
+          <td><span class="status-badge status-{{ booking.status }}">{{ booking.get_status_display }}</span></td>
+        </tr>
+        {% endif %}
+      {% empty %}
+      <tr><td colspan="4" style="text-align: center; padding: 2rem;">{% trans 'No passengers booked for this trip yet.' %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

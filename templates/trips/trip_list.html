@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="header-with-action">
+  <h1>{% trans 'Manage Trips' %}</h1>
+  <a href="{% url 'trip-add' %}" class="btn-primary">{% trans 'Add New Trip' %}</a>
+</div>
+
+<div class="card-grid">
+  {% for trip in trips %}
+  <div class="trip-card">
+    <div class="trip-card-header">
+      <h3>{{ trip.name }}</h3>
+      <span class="status-badge status-{{ trip.status }}">{{ trip.get_status_display }}</span>
+    </div>
+    <div class="trip-card-body">
+      <p><strong>{% trans 'Departure:' %}</strong> {{ trip.departure_date|date:"d M Y, H:i" }}</p>
+      <p><strong>{% trans 'Return:' %}</strong> {{ trip.return_date|date:"d M Y, H:i" }}</p>
+      <p><strong>{% trans 'Price:' %}</strong> ${{ trip.price_per_person|floatformat:2 }}</p>
+    </div>
+    <div class="trip-card-footer">
+      <div class="seats-info">
+        <span>{% trans 'Seats:' %}</span>
+        <strong>{{ trip.booked_seats }} / {{ trip.total_seats }}</strong>
+        <div class="progress-bar">
+          <div class="progress" style="width: {% widthratio trip.booked_seats trip.total_seats 100 %}%"></div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <a href="{% url 'trip-update' trip.pk %}" class="action-link">{% trans 'Edit' %}</a>
+        <a href="{% url 'trip-detail' trip.pk %}" class="btn-secondary">{% trans 'Details' %}</a>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <p>{% trans 'No trips found. Click "Add New Trip" to create one.' %}</p>
+  {% endfor %}
+</div>
+{% endblock %}
