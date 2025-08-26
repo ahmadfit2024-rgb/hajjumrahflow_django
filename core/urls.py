@@ -10,7 +10,7 @@ from .views import dashboard_view, customer_list_view, customer_add_view
 urlpatterns = [
     path('', dashboard_view, name='dashboard'),
     path('customers/', customer_list_view, name='customer-list'),
-    path('customers/add/', customer_add_view, name='customer-add'), # <-- رابط صفحة الإضافة
+    path('customers/add/', customer_add_view, name='customer-add'),
 
     path('i18n/', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),

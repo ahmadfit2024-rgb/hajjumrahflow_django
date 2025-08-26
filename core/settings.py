@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',  # <-- هذا هو السطر الذي أضفناه
+    'rest_framework.authtoken',
     'drf_spectacular',
     'corsheaders',
     'users',
