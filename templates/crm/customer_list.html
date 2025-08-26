@@ -35,27 +35,4 @@
     </tbody>
   </table>
 </div>
-=======
-<h1>{% trans 'Customers' %}</h1>
-<table>
-  <thead>
-    <tr>
-      <th>{% trans 'Name' %}</th>
-      <th>{% trans 'Phone' %}</th>
-      <th>{% trans 'Passport' %}</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for customer in customers %}
-    <tr>
-      <td><a href="{% url 'crm:customer-detail' customer.id %}">{{ customer.full_name }}</a></td>
-      <td>{{ customer.phone_number }}</td>
-      <td>{{ customer.passport_number }}</td>
-    </tr>
-    {% empty %}
-    <tr><td colspan="3">{% trans 'No customers found.' %}</td></tr>
-    {% endfor %}
-  </tbody>
-</table>
->>>>>>> 34d1a824a92da230991a81d652f28a0b6b7100c3
 {% endblock %}
