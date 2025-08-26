@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="header-with-action">
+  <h1>{% trans 'Manage Bookings' %}</h1>
+  <a href="{% url 'booking-add' %}" class="btn-primary">{% trans 'Create New Booking' %}</a>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>{% trans 'Customer' %}</th>
+        <th>{% trans 'Trip' %}</th>
+        <th>{% trans 'Booking Date' %}</th>
+        <th>{% trans 'Total Amount' %}</th>
+        <th>{% trans 'Status' %}</th>
+        <th>{% trans 'Actions' %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in bookings %}
+      <tr>
+        <td>{{ booking.customer.full_name }}</td>
+        <td>{{ booking.trip.name }}</td>
+        <td>{{ booking.booking_date|date:"d M Y" }}</td>
+        <td>${{ booking.total_amount|floatformat:2 }}</td>
+        <td><span class="status-badge status-{{ booking.status }}">{{ booking.get_status_display }}</span></td>
+        <td>
+          <a href="#" class="action-link">{% trans 'View' %}</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="6" style="text-align: center; padding: 2rem;">{% trans 'No bookings found. Click "Create New Booking" to begin.' %}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

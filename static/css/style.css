@@ -12,6 +12,10 @@
   --status-completed: #6c757d;
   --status-cancelled: #dc3545;
   --status-pending: #ffc107;
+  --alert-success-bg: #d4edda;
+  --alert-success-text: #155724;
+  --alert-error-bg: #f8d7da;
+  --alert-error-text: #721c24;
 }
 
 body {
@@ -25,36 +29,20 @@ body {
 }
 
 /* General Components */
-h1, h2, h3 {
-  font-weight: 700;
-  color: var(--primary-color);
-  margin-top: 0;
-}
+h1, h2, h3 { font-weight: 700; color: var(--primary-color); margin-top: 0; }
 .header-with-action {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;
 }
 .btn-primary {
-  background-color: var(--secondary-color);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: 700;
-  transition: background-color 0.2s;
-  border: none; cursor: pointer; font-size: 1rem;
+  background-color: var(--secondary-color); color: white; padding: 0.75rem 1.5rem;
+  text-decoration: none; border-radius: 5px; font-weight: 700;
+  transition: background-color 0.2s; border: none; cursor: pointer; font-size: 1rem;
 }
 .btn-primary:hover { background-color: #a4883a; }
 .btn-secondary {
-  background-color: var(--action-color);
-  color: white;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: 700;
+  background-color: var(--action-color); color: white; padding: 0.5rem 1rem;
+  text-decoration: none; border-radius: 5px; font-weight: 700;
   transition: background-color 0.2s;
 }
 .btn-secondary:hover { background-color: #0056b3; }
@@ -92,16 +80,13 @@ h1, h2, h3 {
 
 /* Dashboard & Cards */
 .dashboard-stats, .card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; margin-top: 2rem;
 }
 .stat-card, .trip-card, .detail-card {
   background-color: var(--card-bg); padding: 1.5rem;
   border-radius: 8px; border: 1px solid var(--border-color);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  display: flex; flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; flex-direction: column;
 }
 .stat-card h2 { margin-top: 0; font-size: 1.1rem; color: var(--text-muted); }
 .stat-card p { font-size: 2.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0; }
@@ -119,10 +104,9 @@ h1, h2, h3 {
 .card-actions { display: flex; justify-content: flex-end; align-items: center; margin-top: 1rem; gap: 0.5rem; }
 
 /* Details Page */
-.details-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem;
-}
+.details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; }
 .detail-card p { font-size: 1.1rem; margin: 1rem 0; }
+.header-actions { display: flex; gap: 1rem; }
 
 /* Status Badges */
 .status-badge {
@@ -157,3 +141,12 @@ table th, table td { padding: 1rem; text-align: start; border-top: 1px solid var
     padding: 0.75rem; border: 1px solid var(--border-color);
     border-radius: 4px; font-size: 1rem; font-family: inherit;
 }
+
+/* Messages & Alerts */
+.messages { margin-bottom: 1.5rem; }
+.alert {
+  padding: 1rem; border-radius: 5px;
+  border: 1px solid transparent;
+}
+.alert-success { background-color: var(--alert-success-bg); color: var(--alert-success-text); }
+.alert-error { background-color: var(--alert-error-bg); color: var(--alert-error-text); }

@@ -3,7 +3,10 @@
 {% block content %}
 <div class="header-with-action">
   <h1>{{ trip.name }}</h1>
-  <a href="{% url 'trip-update' trip.pk %}" class="btn-primary">{% trans 'Edit Trip' %}</a>
+  <div class="header-actions">
+    <a href="{% url 'booking-add' %}?trip_id={{ trip.pk }}" class="btn-secondary">{% trans 'Add Booking to this Trip' %}</a>
+    <a href="{% url 'trip-update' trip.pk %}" class="btn-primary">{% trans 'Edit Trip' %}</a>
+  </div>
 </div>
 
 <div class="details-grid">

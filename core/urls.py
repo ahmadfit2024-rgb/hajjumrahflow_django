@@ -6,12 +6,9 @@ from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from .views import (
     dashboard_view, 
-    customer_list_view, 
-    customer_add_view,
-    trip_list_view,
-    trip_detail_view,
-    trip_add_view,
-    trip_update_view,
+    customer_list_view, customer_add_view,
+    trip_list_view, trip_detail_view, trip_add_view, trip_update_view,
+    booking_list_view, booking_add_view, # <-- استيراد دوال الحجوزات
 )
 
 urlpatterns = [
@@ -27,6 +24,10 @@ urlpatterns = [
     path('trips/add/', trip_add_view, name='trip-add'),
     path('trips/<int:pk>/', trip_detail_view, name='trip-detail'),
     path('trips/<int:pk>/update/', trip_update_view, name='trip-update'),
+
+    # Bookings
+    path('bookings/', booking_list_view, name='booking-list'),
+    path('bookings/add/', booking_add_view, name='booking-add'),
 
     # Admin and API routes
     path('i18n/', include('django.conf.urls.i18n')),
