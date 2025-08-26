@@ -4,11 +4,10 @@
 <div class="header-with-action">
   <h1>{{ trip.name }}</h1>
   <div class="header-actions">
-    <a href="{% url 'booking-add' %}?trip_id={{ trip.pk }}" class="btn-secondary">{% trans 'Add Booking to this Trip' %}</a>
-    <a href="{% url 'trip-update' trip.pk %}" class="btn-primary">{% trans 'Edit Trip' %}</a>
+    <a href="{% url 'web_booking_add' %}?trip_id={{ trip.pk }}" class="btn-secondary">{% trans 'Add Booking to this Trip' %}</a>
+    <a href="{% url 'web_trip_update' trip.pk %}" class="btn-primary">{% trans 'Edit Trip' %}</a>
   </div>
 </div>
-
 <div class="details-grid">
     <div class="detail-card">
         <h2>{% trans 'Trip Information' %}</h2>
@@ -46,7 +45,7 @@
       {% for booking in trip.bookings.all %}
         {% if booking.status != 'cancelled' %}
         <tr>
-          <td>{{ booking.customer.full_name }}</td>
+          <td><a href="{% url 'web_customer_detail' booking.customer.pk %}">{{ booking.customer.full_name }}</a></td>
           <td>{{ booking.customer.phone_number }}</td>
           <td>{{ booking.customer.passport_number }}</td>
           <td><span class="status-badge status-{{ booking.status }}">{{ booking.get_status_display }}</span></td>

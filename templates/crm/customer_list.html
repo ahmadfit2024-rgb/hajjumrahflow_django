@@ -3,7 +3,7 @@
 {% block content %}
 <div class="header-with-action">
   <h1>{% trans 'Customers' %}</h1>
-  <a href="{% url 'customer-add' %}" class="btn-primary">{% trans 'Add New Customer' %}</a>
+  <a href="{% url 'web_customer_add' %}" class="btn-primary">{% trans 'Add New Customer' %}</a>
 </div>
 
 <div class="table-container">
@@ -20,13 +20,12 @@
     <tbody>
       {% for customer in customers %}
       <tr>
-        <td>{{ customer.full_name }}</td>
+        <td><a href="{% url 'web_customer_detail' customer.pk %}">{{ customer.full_name }}</a></td>
         <td>{{ customer.phone_number }}</td>
         <td>{{ customer.passport_number }}</td>
         <td>{{ customer.nationality }}</td>
         <td>
-          <a href="#" class="action-link">{% trans 'View' %}</a>
-          <a href="#" class="action-link">{% trans 'Edit' %}</a>
+          <a href="{% url 'web_customer_update' customer.pk %}" class="action-link">{% trans 'Edit' %}</a>
         </td>
       </tr>
       {% empty %}

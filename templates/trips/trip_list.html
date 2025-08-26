@@ -3,7 +3,7 @@
 {% block content %}
 <div class="header-with-action">
   <h1>{% trans 'Manage Trips' %}</h1>
-  <a href="{% url 'trip-add' %}" class="btn-primary">{% trans 'Add New Trip' %}</a>
+  <a href="{% url 'web_trip_add' %}" class="btn-primary">{% trans 'Add New Trip' %}</a>
 </div>
 
 <div class="card-grid">
@@ -27,8 +27,8 @@
         </div>
       </div>
       <div class="card-actions">
-        <a href="{% url 'trip-update' trip.pk %}" class="action-link">{% trans 'Edit' %}</a>
-        <a href="{% url 'trip-detail' trip.pk %}" class="btn-secondary">{% trans 'Details' %}</a>
+        <a href="{% url 'web_trip_update' trip.pk %}" class="action-link">{% trans 'Edit' %}</a>
+        <a href="{% url 'web_trip_detail' trip.pk %}" class="btn-secondary">{% trans 'Details' %}</a>
       </div>
     </div>
   </div>
